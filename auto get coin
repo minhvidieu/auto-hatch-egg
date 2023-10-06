@@ -18,6 +18,34 @@ for i,v in pairs(game.Players:GetPlayers()) do
                               newimage.ImageColor3 = Color3.new(math.random(1,255)/255,math.random(1,255)/255,math.random(1,255)/255)
                               wait()
                               newimage.ImageColor3 = Color3.new(1,1,1)
+local message = "niga"
+_G.BetterSpammer = true
+
+local TextChatService = game:GetService("TextChatService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local function Beta()
+    if not ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents") then
+        return true
+    else
+        return false
+    end
+end
+
+local Beta = Beta()
+local function Chat(Message)
+    if Beta == true then
+        local Channels = TextChatService.TextChannels
+        local General = Channels.RBXGeneral
+
+        General:SendAsync(Message)
+    else
+        ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Message, "All")
+    end
+end
+while task.wait() and _G.BetterSpammer do
+ task.spawn(function()
+Chat(message)
                       end
               end)
       end
